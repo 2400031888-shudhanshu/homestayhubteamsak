@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, MapPin, Users, Home, Compass, Sparkles } from "lucide-react";
@@ -74,18 +75,24 @@ const HeroSection = () => {
         {/* Enhanced CTA Buttons */}
         <div className="animate-slide-up delay-500">
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button variant="glass" size="lg" className="px-10 h-14 text-lg font-medium rounded-2xl group border-2 border-white/30 hover:border-trust/60 hover:bg-trust/20">
-              <Users className="w-5 h-5 mr-3 group-hover:scale-110 transition-smooth" />
-              I'm a Traveler
-            </Button>
-            <Button variant="glass" size="lg" className="px-10 h-14 text-lg font-medium rounded-2xl group border-2 border-white/30 hover:border-adventure/60 hover:bg-adventure/20">
-              <Home className="w-5 h-5 mr-3 group-hover:scale-110 transition-smooth" />
-              I'm a Host
-            </Button>
-            <Button variant="glass" size="lg" className="px-10 h-14 text-lg font-medium rounded-2xl group border-2 border-white/30 hover:border-nature/60 hover:bg-nature/20">
-              <MapPin className="w-5 h-5 mr-3 group-hover:scale-110 transition-smooth" />
-              I'm a Guide
-            </Button>
+            <Link to="/auth">
+              <Button variant="glass" size="lg" className="px-10 h-14 text-lg font-medium rounded-2xl group border-2 border-white/30 hover:border-trust/60 hover:bg-trust/20">
+                <Users className="w-5 h-5 mr-3 group-hover:scale-110 transition-smooth" />
+                I'm a Traveler
+              </Button>
+            </Link>
+            <Link to="/become-host">
+              <Button variant="glass" size="lg" className="px-10 h-14 text-lg font-medium rounded-2xl group border-2 border-white/30 hover:border-adventure/60 hover:bg-adventure/20">
+                <Home className="w-5 h-5 mr-3 group-hover:scale-110 transition-smooth" />
+                I'm a Host
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="glass" size="lg" className="px-10 h-14 text-lg font-medium rounded-2xl group border-2 border-white/30 hover:border-nature/60 hover:bg-nature/20">
+                <MapPin className="w-5 h-5 mr-3 group-hover:scale-110 transition-smooth" />
+                I'm a Guide
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
