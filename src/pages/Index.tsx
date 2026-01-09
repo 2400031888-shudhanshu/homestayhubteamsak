@@ -5,51 +5,52 @@ import HomestayCard from "@/components/HomestayCard";
 import AttractionCard from "@/components/AttractionCard";
 import StatsSection from "@/components/StatsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import DestinationsSection from "@/components/DestinationsSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, MapPin, Star, Home, Sparkles, Globe } from "lucide-react";
 
 // Import our generated images
-import mountainVillage from "@/assets/mountain-village.jpg";
-import coastalHomestay from "@/assets/coastal-homestay.jpg";
-import templeAttraction from "@/assets/temple-attraction.jpg";
+import japaneseRyokan from "@/assets/japanese-ryokan.jpg";
+import moroccanRiad from "@/assets/moroccan-riad.jpg";
+import machuPicchu from "@/assets/machu-picchu.jpg";
 
 const Index = () => {
   // Sample homestay data
   const featuredHomestays = [
     {
       id: "1",
-      image: mountainVillage,
-      title: "Mountain Village Retreat",
-      location: "Himalayan Foothills, Nepal",
+      image: japaneseRyokan,
+      title: "Traditional Kyoto Ryokan",
+      location: "Kyoto, Japan",
       rating: 4.9,
-      price: 35,
-      host: "Karma Sherpa",
-      guests: 4,
-      amenities: ["WiFi", "Mountain View", "Local Meals", "Trekking Guide"]
+      price: 85,
+      host: "Yamamoto-san",
+      guests: 2,
+      amenities: ["Onsen", "Tatami Room", "Kaiseki Meals", "Zen Garden"]
     },
     {
       id: "2",
-      image: coastalHomestay,
-      title: "Coastal Paradise Home",
-      location: "Bali, Indonesia", 
+      image: moroccanRiad,
+      title: "Marrakech Heritage Riad",
+      location: "Marrakech, Morocco", 
       rating: 4.8,
-      price: 45,
-      host: "Made Sutrisna",
-      guests: 6,
-      amenities: ["Beach Access", "WiFi", "Surfboard", "Cooking Class"]
+      price: 55,
+      host: "Fatima Benali",
+      guests: 4,
+      amenities: ["Rooftop Terrace", "Traditional Hammam", "Courtyard", "Cooking Class"]
     }
   ];
 
   // Sample attraction data
   const nearbyAttractions = [
     {
-      image: templeAttraction,
-      title: "Sacred Temple Complex",
-      location: "Ancient City Center",
-      duration: "2-3 hours",
-      rating: 4.7,
-      category: "Cultural",
-      description: "Experience the spiritual heart of the city with centuries-old architecture and local ceremonies."
+      image: machuPicchu,
+      title: "Machu Picchu Trail",
+      location: "Sacred Valley, Peru",
+      duration: "Full day",
+      rating: 4.9,
+      category: "Adventure",
+      description: "Trek through the Andes to discover the ancient Incan citadel, a UNESCO World Heritage wonder."
     }
   ];
 
@@ -58,6 +59,7 @@ const Index = () => {
       <NavigationHeader />
       <HeroSection />
       <StatsSection />
+      <DestinationsSection />
       
       {/* Enhanced Featured Homestays Section */}
       <section id="homestays" className="py-24 px-4 bg-gradient-to-b from-background to-muted/30">
