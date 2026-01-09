@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, MapPin, Users, Home } from "lucide-react";
-import heroImage from "@/assets/hero-homestay.jpg";
+import heroImage from "@/assets/hero-bali-terraces.jpg";
 
 const HeroSection = () => {
   return (
