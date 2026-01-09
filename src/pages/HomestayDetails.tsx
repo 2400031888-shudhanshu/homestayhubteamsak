@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/hooks/use-toast';
 import { Heart, Star, MapPin, Users, Wifi, ChevronLeft, Calendar } from 'lucide-react';
+import { formatPrice } from '@/lib/currency';
 import mountainVillage from '@/assets/mountain-village.jpg';
 
 const HomestayDetails = () => {
@@ -159,9 +160,12 @@ const HomestayDetails = () => {
             <div className="lg:col-span-1">
               <div className="bg-card rounded-2xl p-6 shadow-premium sticky top-24">
                 <div className="mb-6">
-                  <div className="flex items-baseline mb-2">
-                    <span className="text-3xl font-bold text-primary">${homestay.price}</span>
+                  <div className="flex items-baseline mb-1">
+                    <span className="text-3xl font-bold text-primary">{formatPrice(homestay.price).usd}</span>
                     <span className="text-muted-foreground ml-2">/night</span>
+                  </div>
+                  <div className="text-lg text-muted-foreground font-medium">
+                    {formatPrice(homestay.price).inr} /night
                   </div>
                 </div>
 
