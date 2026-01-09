@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Users, Wifi, Car } from "lucide-react";
+import { formatPrice } from "@/lib/currency";
 
 interface HomestayCardProps {
   image: string;
@@ -56,10 +57,12 @@ const HomestayCard = ({
           </h3>
           <div className="text-right">
             <div className="flex items-baseline">
-              <span className="text-3xl font-bold text-primary">${price}</span>
+              <span className="text-2xl font-bold text-primary">{formatPrice(price).usd}</span>
               <span className="text-muted-foreground text-sm ml-1">/night</span>
             </div>
-            <div className="text-xs text-muted-foreground mt-1">Best Price</div>
+            <div className="text-sm text-muted-foreground/80 font-medium">
+              {formatPrice(price).inr}
+            </div>
           </div>
         </div>
         
