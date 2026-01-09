@@ -252,7 +252,7 @@ const Index = () => {
             <a href="#" className="hover:text-warmth transition-smooth hover:scale-105 transform">About Us</a>
             <a href="#" className="hover:text-warmth transition-smooth hover:scale-105 transform">How It Works</a>
             <a href="#" className="hover:text-warmth transition-smooth hover:scale-105 transform">Safety</a>
-            <a href="#" className="hover:text-warmth transition-smooth hover:scale-105 transform">Contact</a>
+            <Link to="/contact" className="hover:text-warmth transition-smooth hover:scale-105 transform">Contact</Link>
             <a href="#" className="hover:text-warmth transition-smooth hover:scale-105 transform">Terms</a>
             <a href="#" className="hover:text-warmth transition-smooth hover:scale-105 transform">Privacy</a>
           </div>
