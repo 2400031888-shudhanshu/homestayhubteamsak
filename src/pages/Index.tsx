@@ -13,6 +13,7 @@ import { ArrowRight, Users, MapPin, Star, Home, Sparkles, Globe } from "lucide-r
 import japaneseRyokan from "@/assets/japanese-ryokan.jpg";
 import moroccanRiad from "@/assets/moroccan-riad.jpg";
 import machuPicchu from "@/assets/machu-picchu.jpg";
+import homestayDashboard from "@/assets/homestay-dashboard.jpg";
 
 const Index = () => {
   // Sample homestay data
@@ -58,6 +59,19 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <NavigationHeader />
       <HeroSection />
+
+      {/* Featured Dashboard Image */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <img
+            src={homestayDashboard}
+            alt="Charming mountain homestay with travel essentials"
+            className="w-full rounded-3xl shadow-premium object-cover max-h-[500px]"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       <StatsSection />
       <DestinationsSection />
       
