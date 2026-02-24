@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useAuth } from "@/hooks/useAuth";
-import { Home, User, Menu, Heart, LogOut, Mail } from "lucide-react";
+import { Home, User, Menu, LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,29 +21,29 @@ const NavigationHeader = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-travel">
-      <div className="container mx-auto px-4 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-sunset rounded-xl flex items-center justify-center">
-              <Home className="w-6 h-6 text-white" />
+            <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
+              <Home className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-foreground">HomestayHub</span>
+            <span className="text-lg font-bold text-primary">Homestay Finder</span>
           </Link>
           
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/homestays" className="text-muted-foreground hover:text-primary transition-smooth">
-              Find Homestays
+            <Link to="/" className="text-foreground hover:text-primary transition-colors text-sm font-medium">
+              Home
             </Link>
-            <Link to="/attractions" className="text-muted-foreground hover:text-primary transition-smooth">
-              Attractions
+            <Link to="/homestays" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
+              About
             </Link>
-            <Link to="/favorites" className="text-muted-foreground hover:text-primary transition-smooth">
-              Favorites
+            <Link to="/attractions" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
+              Features
             </Link>
-            <Link to="/contact" className="text-muted-foreground hover:text-primary transition-smooth">
+            <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               Contact
             </Link>
           </nav>
@@ -51,23 +51,13 @@ const NavigationHeader = () => {
           {/* Actions */}
           <div className="flex items-center space-x-3">
             <ThemeToggle />
-            <Link to="/favorites">
-              <Button variant="ghost" size="icon">
-                <Heart className="w-5 h-5" />
-              </Button>
-            </Link>
-            <Link to="/become-host">
-              <Button variant="outline" className="hidden md:flex">
-                Become a Host
-              </Button>
-            </Link>
             
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                    <Avatar className="h-10 w-10 border-2 border-primary/30">
-                      <AvatarFallback className="bg-gradient-sunset text-white font-semibold">
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                    <Avatar className="h-9 w-9 border-2 border-primary/30">
+                      <AvatarFallback className="bg-primary text-primary-foreground font-semibold text-sm">
                         {getInitials()}
                       </AvatarFallback>
                     </Avatar>
@@ -75,28 +65,14 @@ const NavigationHeader = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56" align="end">
                   <div className="flex items-center justify-start gap-2 p-2">
-                    <div className="flex flex-col space-y-1 leading-none">
-                      <p className="font-medium text-sm">{user.email}</p>
-                    </div>
+                    <p className="font-medium text-sm">{user.email}</p>
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link to="/favorites" className="cursor-pointer">
-                      <Heart className="mr-2 h-4 w-4" />
-                      My Favorites
-                    </Link>
+                    <Link to="/favorites" className="cursor-pointer">My Favorites</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link to="/become-host" className="cursor-pointer">
-                      <Home className="mr-2 h-4 w-4" />
-                      Become a Host
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/contact" className="cursor-pointer">
-                      <Mail className="mr-2 h-4 w-4" />
-                      Contact Us
-                    </Link>
+                    <Link to="/become-host" className="cursor-pointer">Become a Host</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={signOut} className="cursor-pointer text-destructive">
@@ -107,9 +83,8 @@ const NavigationHeader = () => {
               </DropdownMenu>
             ) : (
               <Link to="/auth">
-                <Button variant="adventure">
-                  <User className="w-4 h-4 mr-2" />
-                  Sign In
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 h-9 text-sm font-medium">
+                  Sign Up
                 </Button>
               </Link>
             )}
