@@ -3,9 +3,12 @@ import { useParams, Link } from 'react-router-dom';
 import NavigationHeader from '@/components/NavigationHeader';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useAppContext } from '@/contexts/AppContext';
 import { useToast } from '@/hooks/use-toast';
-import { Heart, Star, MapPin, Users, Wifi, ChevronLeft, Calendar } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { Heart, Star, MapPin, Users, Wifi, ChevronLeft, Calendar, Loader2 } from 'lucide-react';
 import { formatPrice } from '@/lib/currency';
 import mountainVillage from '@/assets/mountain-village.jpg';
 
@@ -16,6 +19,11 @@ const HomestayDetails = () => {
   const [guests, setGuests] = useState(2);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
+  const [guestName, setGuestName] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
+  const [guestPhone, setGuestPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Mock data - would come from API
   const homestay = {
@@ -48,17 +56,92 @@ const HomestayDetails = () => {
     }
   };
 
-  const handleBooking = (e: React.FormEvent) => {
+  const calculateNights = () => {
+    if (!checkIn || !checkOut) return 0;
+    const start = new Date(checkIn);
+    const end = new Date(checkOut);
+    const diff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+    return diff > 0 ? diff : 0;
+  };
+
+  const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!checkIn || !checkOut) {
       toast({ title: 'Please select dates', variant: 'destructive' });
       return;
     }
-    toast({ 
-      title: 'Booking Request Sent!', 
-      description: `${homestay.host} will review your booking for ${guests} guests.` 
-    });
+    if (!guestName.trim() || !guestEmail.trim()) {
+      toast({ title: 'Please enter your name and email', variant: 'destructive' });
+      return;
+    }
+
+    const nights = calculateNights();
+    if (nights <= 0) {
+      toast({ title: 'Check-out must be after check-in', variant: 'destructive' });
+      return;
+    }
+
+    const totalPrice = nights * homestay.price;
+    setIsSubmitting(true);
+
+    try {
+      // Save booking to database
+      const { error: dbError } = await supabase.from('bookings').insert({
+        homestay_id: homestay.id,
+        homestay_title: homestay.title,
+        guest_name: guestName.trim(),
+        guest_email: guestEmail.trim(),
+        guest_phone: guestPhone.trim() || null,
+        check_in: checkIn,
+        check_out: checkOut,
+        guests,
+        total_price: totalPrice,
+        message: message.trim() || null,
+      });
+
+      if (dbError) throw dbError;
+
+      // Send email notification
+      await supabase.functions.invoke('send-booking-email', {
+        body: {
+          guest_name: guestName.trim(),
+          guest_email: guestEmail.trim(),
+          guest_phone: guestPhone.trim() || undefined,
+          homestay_title: homestay.title,
+          check_in: checkIn,
+          check_out: checkOut,
+          guests,
+          total_price: totalPrice,
+          message: message.trim() || undefined,
+        },
+      });
+
+      toast({
+        title: 'Booking Request Sent! 🎉',
+        description: `Your booking for ${nights} nights ($${totalPrice}) has been submitted. You'll receive a confirmation soon.`,
+      });
+
+      // Reset form
+      setGuestName('');
+      setGuestEmail('');
+      setGuestPhone('');
+      setMessage('');
+      setCheckIn('');
+      setCheckOut('');
+    } catch (error: any) {
+      console.error('Booking error:', error);
+      toast({
+        title: 'Booking failed',
+        description: 'Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const nights = calculateNights();
+  const totalPrice = nights * homestay.price;
 
   return (
     <div className="min-h-screen bg-background">
@@ -171,12 +254,47 @@ const HomestayDetails = () => {
 
                 <form onSubmit={handleBooking} className="space-y-4">
                   <div>
+                    <label className="text-sm font-medium mb-2 block">Your Name *</label>
+                    <Input
+                      value={guestName}
+                      onChange={(e) => setGuestName(e.target.value)}
+                      placeholder="Full name"
+                      required
+                      maxLength={100}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Email *</label>
+                    <Input
+                      type="email"
+                      value={guestEmail}
+                      onChange={(e) => setGuestEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      required
+                      maxLength={255}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Phone (optional)</label>
+                    <Input
+                      type="tel"
+                      value={guestPhone}
+                      onChange={(e) => setGuestPhone(e.target.value)}
+                      placeholder="+91 XXXXX XXXXX"
+                      maxLength={20}
+                    />
+                  </div>
+
+                  <div>
                     <label className="text-sm font-medium mb-2 block">Check-in</label>
                     <input
                       type="date"
                       value={checkIn}
                       onChange={(e) => setCheckIn(e.target.value)}
                       className="w-full px-4 py-2 rounded-xl border border-border bg-background"
+                      min={new Date().toISOString().split('T')[0]}
                       required
                     />
                   </div>
@@ -188,6 +306,7 @@ const HomestayDetails = () => {
                       value={checkOut}
                       onChange={(e) => setCheckOut(e.target.value)}
                       className="w-full px-4 py-2 rounded-xl border border-border bg-background"
+                      min={checkIn || new Date().toISOString().split('T')[0]}
                       required
                     />
                   </div>
@@ -207,9 +326,39 @@ const HomestayDetails = () => {
                     </select>
                   </div>
 
-                  <Button type="submit" variant="booking" className="w-full h-12">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Request to Book
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Message (optional)</label>
+                    <Textarea
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Any special requests..."
+                      maxLength={500}
+                      rows={3}
+                    />
+                  </div>
+
+                  {nights > 0 && (
+                    <div className="bg-muted/50 rounded-xl p-4 space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span>{formatPrice(homestay.price).usd} × {nights} nights</span>
+                        <span>{formatPrice(totalPrice).usd}</span>
+                      </div>
+                      <div className="flex justify-between font-bold text-lg border-t border-border pt-2">
+                        <span>Total</span>
+                        <span className="text-primary">{formatPrice(totalPrice).usd}</span>
+                      </div>
+                      <div className="text-sm text-muted-foreground text-right">
+                        {formatPrice(totalPrice).inr}
+                      </div>
+                    </div>
+                  )}
+
+                  <Button type="submit" variant="booking" className="w-full h-12" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting...</>
+                    ) : (
+                      <><Calendar className="w-4 h-4 mr-2" /> Request to Book</>
+                    )}
                   </Button>
                 </form>
 
