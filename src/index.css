@@ -2,80 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Homestay Finder Design System - Clean, professional green theme */
+/* Travel & Homestay Design System - Dreamy, wanderlust-inspired */
 
 @layer base {
   :root {
-    /* Base colors - clean whites */
-    --background: 0 0% 100%;
-    --foreground: 210 20% 15%;
+    /* Base colors - cool cream tones */
+    --background: 220 20% 98%;
+    --foreground: 220 25% 12%;
 
-    /* Card system */
+    /* Card system - clean and airy */
     --card: 0 0% 100%;
-    --card-foreground: 210 20% 15%;
+    --card-foreground: 220 25% 12%;
 
     /* Popover system */
     --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 15%;
+    --popover-foreground: 220 25% 12%;
 
-    /* Primary - forest green */
-    --primary: 160 45% 30%;
+    /* Primary - dreamy teal for exploration */
+    --primary: 175 70% 42%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 160 50% 40%;
+    --primary-glow: 165 75% 55%;
 
-    /* Secondary - soft sage */
-    --secondary: 150 15% 93%;
-    --secondary-foreground: 160 30% 25%;
+    /* Secondary - soft lavender for magic */
+    --secondary: 270 60% 92%;
+    --secondary-foreground: 270 40% 30%;
 
-    /* Muted tones */
-    --muted: 210 10% 95%;
-    --muted-foreground: 210 10% 45%;
+    /* Muted tones - misty grays */
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    /* Accent - teal green */
-    --accent: 160 35% 90%;
-    --accent-foreground: 160 45% 25%;
+    /* Accent - sunset rose */
+    --accent: 350 70% 75%;
+    --accent-foreground: 350 40% 25%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders and inputs */
-    --border: 210 15% 90%;
-    --input: 210 15% 94%;
-    --ring: 160 45% 30%;
+    /* Borders and inputs - subtle */
+    --border: 220 15% 90%;
+    --input: 220 15% 94%;
+    --ring: 175 70% 42%;
 
-    /* Custom theme tokens */
-    --adventure: 160 45% 30%;
-    --adventure-light: 160 40% 45%;
-    --adventure-dark: 160 50% 22%;
-    --trust: 160 45% 30%;
-    --trust-light: 160 40% 45%;
-    --nature: 155 45% 38%;
-    --nature-light: 155 35% 55%;
-    --warmth: 35 70% 55%;
-    --warmth-light: 35 65% 70%;
-    --gold: 42 80% 55%;
-    --coral: 16 80% 60%;
+    /* Custom travel theme tokens - Dreamy palette */
+    --adventure: 350 85% 65%;
+    --adventure-light: 350 90% 75%;
+    --adventure-dark: 350 80% 50%;
+    --trust: 175 70% 42%;
+    --trust-light: 165 75% 55%;
+    --nature: 155 55% 48%;
+    --nature-light: 155 50% 65%;
+    --warmth: 35 85% 70%;
+    --warmth-light: 35 80% 82%;
+    --gold: 42 95% 62%;
+    --coral: 16 100% 68%;
     
-    /* Gradients */
-    --gradient-sunset: linear-gradient(135deg, hsl(160 45% 30%), hsl(160 50% 40%));
-    --gradient-ocean: linear-gradient(135deg, hsl(160 45% 30%), hsl(180 40% 40%));
-    --gradient-hero: linear-gradient(to right, hsl(210 20% 10% / 0.7), hsl(210 20% 10% / 0.3), transparent);
-    --gradient-nature: linear-gradient(135deg, hsl(155 45% 38%), hsl(160 40% 45%));
-    --gradient-premium: linear-gradient(135deg, hsl(160 45% 30%), hsl(155 45% 38%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(150 10% 98%));
-    --gradient-mesh: radial-gradient(ellipse at top left, hsl(160 45% 30% / 0.06), transparent 50%), radial-gradient(ellipse at bottom right, hsl(155 45% 38% / 0.06), transparent 50%);
+    /* Premium Gradients - Dreamy vibes */
+    --gradient-sunset: linear-gradient(135deg, hsl(350 85% 65%), hsl(35 85% 70%), hsl(42 95% 62%));
+    --gradient-ocean: linear-gradient(135deg, hsl(175 70% 42%), hsl(195 75% 55%), hsl(220 65% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(270 50% 35% / 0.85), hsl(350 70% 55% / 0.7), hsl(35 85% 60% / 0.5));
+    --gradient-nature: linear-gradient(135deg, hsl(155 55% 48%), hsl(175 60% 52%));
+    --gradient-premium: linear-gradient(135deg, hsl(270 60% 65%), hsl(350 70% 70%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 20% 98%));
+    --gradient-mesh: radial-gradient(ellipse at top left, hsl(350 85% 65% / 0.12), transparent 50%), radial-gradient(ellipse at bottom right, hsl(175 70% 42% / 0.12), transparent 50%);
     
-    /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(210 20% 15% / 0.08);
-    --shadow-warm: 0 8px 30px hsl(160 45% 30% / 0.12);
-    --shadow-card: 0 2px 10px hsl(210 20% 15% / 0.06);
-    --shadow-premium: 0 20px 60px hsl(160 45% 30% / 0.15);
-    --shadow-floating: 0 10px 40px hsl(160 45% 30% / 0.1);
-    --shadow-glow: 0 0 40px hsl(160 45% 30% / 0.2);
+    /* Advanced Shadows */
+    --shadow-soft: 0 4px 20px hsl(350 85% 65% / 0.12);
+    --shadow-warm: 0 8px 30px hsl(35 85% 70% / 0.25);
+    --shadow-card: 0 2px 10px hsl(220 25% 12% / 0.06);
+    --shadow-premium: 0 20px 60px hsl(270 60% 50% / 0.18);
+    --shadow-floating: 0 10px 40px hsl(175 70% 42% / 0.15);
+    --shadow-glow: 0 0 40px hsl(350 85% 65% / 0.35);
     --shadow-inner: inset 0 2px 4px hsl(0 0% 0% / 0.05);
 
-    /* Animations */
+    /* Enhanced Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -89,78 +89,90 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 210 20% 8%;
-    --foreground: 150 15% 95%;
+    /* Dark theme - mystical night mode */
+    --background: 240 20% 8%;
+    --foreground: 220 20% 96%;
 
-    --card: 210 18% 12%;
-    --card-foreground: 150 15% 95%;
+    --card: 240 18% 12%;
+    --card-foreground: 220 20% 96%;
 
-    --popover: 210 18% 12%;
-    --popover-foreground: 150 15% 95%;
+    --popover: 240 18% 12%;
+    --popover-foreground: 220 20% 96%;
 
-    --primary: 160 50% 45%;
+    --primary: 175 70% 50%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 160 55% 55%;
+    --primary-glow: 165 75% 60%;
 
-    --secondary: 160 20% 18%;
-    --secondary-foreground: 150 30% 85%;
+    --secondary: 270 40% 25%;
+    --secondary-foreground: 270 60% 90%;
 
-    --muted: 210 18% 18%;
-    --muted-foreground: 210 10% 60%;
+    --muted: 240 18% 18%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 160 30% 20%;
-    --accent-foreground: 160 40% 85%;
+    --accent: 350 60% 50%;
+    --accent-foreground: 350 80% 95%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 22%;
-    --input: 210 15% 20%;
-    --ring: 160 50% 45%;
+    --border: 240 15% 22%;
+    --input: 240 15% 20%;
+    --ring: 175 70% 50%;
     
-    --adventure: 160 50% 45%;
-    --adventure-light: 160 45% 55%;
-    --trust: 160 50% 45%;
-    --trust-light: 160 45% 55%;
-    --nature: 155 45% 45%;
-    --warmth: 35 70% 50%;
-    --gold: 42 80% 52%;
-    --coral: 16 80% 58%;
+    /* Dark mode custom tokens */
+    --adventure: 350 85% 60%;
+    --adventure-light: 350 90% 70%;
+    --trust: 175 70% 50%;
+    --trust-light: 165 75% 60%;
+    --nature: 155 55% 50%;
+    --warmth: 35 80% 55%;
+    --gold: 42 95% 58%;
+    --coral: 16 100% 65%;
 
-    --gradient-sunset: linear-gradient(135deg, hsl(160 50% 35%), hsl(160 55% 45%));
-    --gradient-ocean: linear-gradient(135deg, hsl(160 50% 35%), hsl(180 45% 40%));
-    --gradient-hero: linear-gradient(to right, hsl(210 20% 5% / 0.85), hsl(210 20% 5% / 0.5), transparent);
-    --gradient-nature: linear-gradient(135deg, hsl(155 45% 38%), hsl(160 45% 45%));
-    --gradient-premium: linear-gradient(135deg, hsl(160 50% 35%), hsl(155 45% 40%));
-    --gradient-card: linear-gradient(145deg, hsl(210 18% 12%), hsl(210 18% 16%));
-    --gradient-mesh: radial-gradient(ellipse at top left, hsl(160 50% 35% / 0.12), transparent 50%), radial-gradient(ellipse at bottom right, hsl(155 45% 40% / 0.12), transparent 50%);
+    /* Dark mode gradients */
+    --gradient-sunset: linear-gradient(135deg, hsl(350 85% 55%), hsl(35 80% 55%), hsl(42 90% 55%));
+    --gradient-ocean: linear-gradient(135deg, hsl(175 70% 40%), hsl(195 70% 50%), hsl(220 60% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(270 45% 25% / 0.9), hsl(350 65% 45% / 0.8), hsl(35 80% 50% / 0.6));
+    --gradient-nature: linear-gradient(135deg, hsl(155 50% 40%), hsl(175 55% 45%));
+    --gradient-premium: linear-gradient(135deg, hsl(270 55% 55%), hsl(350 65% 60%));
+    --gradient-card: linear-gradient(145deg, hsl(240 18% 12%), hsl(240 18% 16%));
+    --gradient-mesh: radial-gradient(ellipse at top left, hsl(350 80% 55% / 0.18), transparent 50%), radial-gradient(ellipse at bottom right, hsl(175 65% 45% / 0.18), transparent 50%);
     
+    /* Dark mode shadows */
     --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.45);
-    --shadow-warm: 0 8px 30px hsl(160 50% 35% / 0.25);
+    --shadow-warm: 0 8px 30px hsl(350 80% 50% / 0.35);
     --shadow-premium: 0 20px 60px hsl(0 0% 0% / 0.55);
-    --shadow-glow: 0 0 40px hsl(160 50% 35% / 0.3);
+    --shadow-glow: 0 0 40px hsl(350 80% 55% / 0.45);
     
-    --glass-bg: hsl(210 18% 20% / 0.15);
-    --glass-border: hsl(150 15% 35% / 0.25);
+    /* Glass morphism dark */
+    --glass-bg: hsl(240 18% 20% / 0.15);
+    --glass-border: hsl(220 20% 35% / 0.25);
 
-    --sidebar-background: 210 20% 10%;
-    --sidebar-foreground: 150 15% 90%;
-    --sidebar-primary: 160 50% 45%;
+    --sidebar-background: 25 15% 10%;
+    --sidebar-foreground: 35 20% 90%;
+    --sidebar-primary: 14 88% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 18% 18%;
-    --sidebar-accent-foreground: 150 15% 90%;
-    --sidebar-border: 210 15% 22%;
-    --sidebar-ring: 160 50% 45%;
+    --sidebar-accent: 25 15% 18%;
+    --sidebar-accent-foreground: 35 20% 90%;
+    --sidebar-border: 25 15% 22%;
+    --sidebar-ring: 14 88% 60%;
   }
 }
 
