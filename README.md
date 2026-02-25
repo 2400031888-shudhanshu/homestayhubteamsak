@@ -39,4 +39,4 @@ npm install
 npm run dev
 ```
 
-Built with ❤️ using modern React best practices
+
