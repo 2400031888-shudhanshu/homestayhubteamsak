@@ -143,8 +143,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Visit Us</h3>
-                    <p className="text-muted-foreground text-sm">123 Travel Street</p>
-                    <p className="text-muted-foreground text-sm">San Francisco, CA 94102</p>
+                    <p className="text-muted-foreground text-sm">KL University</p>
+                    <p className="text-muted-foreground text-sm">Andhra Pradesh, India</p>
                   </div>
                 </CardContent>
               </Card>
